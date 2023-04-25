@@ -12,8 +12,13 @@
     <header class="main-header"></header>
     <main class="editor-container">
         <div class="inputs">
+            <button class="btn-editor" onclick="onIncreaseFont()">Increase font size</button>
+            <button class="btn-editor" onclick="onDecreaseFont()">Decrease font size</button>
+            <button class="btn-editor" onclick="onSwitchLine()">Switch line</button>
+            <label for="textColor">text-Color</label>
+            <input type="color" oninput="onSetColor(this.value)">
             <label for="text-input"><h3>text-input</h3></label>
-            <input type="text" name="text" class="text-input" oninput="setLineText(this.value)">
+            <input type="text" name="text" class="text-input" oninput="onSetText(this.value)">
             
             <!-- <input type="file" class="file-input btn" name="image" onchange="onRenderMeme(event)" /> -->
         <div class="canvas-container">

@@ -4,9 +4,9 @@ renderGallery()
 
 function renderGallery() {
     const imgs = getImgs();
-    var strHtmls = `<div class="img-gallery" style="margin: auto;">
-                      <input type="file" id="BtnUploadHidden" class="img-item file-input btn" name="image" onchange="onUploadImg(event)" style="display: none;"/>
-                      <label for="BtnUploadHidden" class="btn-upload" data-trans="upload-img-text">Upload an image</label>
+    var strHtmls = `<div class="img-gallery"">
+                      <input type="file" name="image" onchange="onUploadImg(event)">
+                      <label for="BtnUploadHidden">Upload an image</label>
                     </div>`;
     strHtmls += imgs
       .map((img) => {
@@ -19,3 +19,10 @@ function renderGallery() {
     const elGallery = document.querySelector('.images-container');
     elGallery.innerHTML = strHtmls;
   }
+
+  function onImgSelect(id){
+    // const img =  getImg(id)
+    gMeme.selectedImgId=id
+    renderMeme()
+  }
+

@@ -11,17 +11,28 @@
     <div class="main-screen"></div>
     <header class="main-header"></header>
     <main class="editor-container">
-        <div class="inputs">
+        <div class="controls">
+            <button class="btn-editor" onclick="onAddLine()">Add line</button>
+            <button class="btn-editor" onclick="onRemoveLine()">Remove line</button>
             <button class="btn-editor" onclick="onIncreaseFont()">Increase font size</button>
             <button class="btn-editor" onclick="onDecreaseFont()">Decrease font size</button>
             <button class="btn-editor" onclick="onSwitchLine()">Switch line</button>
+            <select
+        onchange="onChangeFontFamily(this.value)"
+        name="font-value"
+        id="fontChange"
+      >
+        <option value="impact">Impact</option>
+        <option value="comic">Comic</option>
+        <option value="vardana">vardana</option>
+      </select>
             <label for="textColor">text-Color</label>
             <input type="color" oninput="onSetColor(this.value)">
             <label for="text-input"><h3>text-input</h3></label>
             <input type="text" name="text" class="text-input" oninput="onSetText(this.value)">
             
             <!-- <input type="file" class="file-input btn" name="image" onchange="onRenderMeme(event)" /> -->
-        <div class="canvas-container">
+        <div  class="canvas-container">
             <canvas
               id="canvas"
               height="550px"

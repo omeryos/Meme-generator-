@@ -2,6 +2,10 @@
 
 var gLines=[150,300,450]
 
+
+eventListeners()
+
+
 function onIncreaseFont(){
     increaseFont() 
     renderMeme()
@@ -19,10 +23,11 @@ function onSetColor(value){
   }
 
 function onSwitchLine(){
+    console.log('gcurrIDX before switch', gCurrLineIdx)
     renderMeme()
     switchLine()
-    console.log('gcurridx',gCurrLineIdx)
-    console.log('currtxt',gMeme.lines[gCurrLineIdx].txt)
+    console.log('gcurridx after switch',gCurrLineIdx)
+    // console.log('currtxt',gMeme.lines[gCurrLineIdx].txt)
     renderMeme()
 }
 
@@ -32,7 +37,7 @@ function onSetText(value) {
     renderMeme()
 }
 
-function renderMeme() {
+function renderMeme() {           
     const meme = getMeme()
     const inputImg = getImg(meme.selectedImgId)
     var img = new Image()
@@ -48,31 +53,54 @@ function renderMeme() {
             gCtx.textBaseline = 'middle'
             let text = line.txt
             gCtx.fillText(text, gElCanvas.width / 2, gLines[i])
+            
         }
     }
 }
 
 
-
-
-/*
-function renderMeme() {
-    const meme = getMeme()
-    const inputImg = getImg(meme.selectedImgId)
-    var img = new Image()
-    img.src = inputImg.url
-    img.onload = function () {
-        gCtx.drawImage(img, 0, 0) 
-        gCtx.font = `${meme.lines[gCurrLineIdx].size}px Arial`
-        gCtx.fillStyle = `${meme.lines[gCurrLineIdx].color}`
-        gCtx.textAlign = `${meme.lines[gCurrLineIdx].align}`
-        gCtx.textBaseline = 'middle' // Set the fill color for the text
-        let text = meme.lines[gCurrLineIdx].txt
-        if(gCurrLineIdx===0){ gCtx.fillText(text, gElCanvas.width / 2, 150)}
-        if(gCurrLineIdx===1){ gCtx.fillText(text, gElCanvas.width / 2, 450)}
-        if(gCurrLineIdx>1){ gCtx.fillText(text, gElCanvas.width / 2, gElCanvas.height/2)}
-        
-    }
-    
+function onDown(ev) {
+    const { offsetX, offsetY} = ev
+    const isClicked = isLineClicked(offsetX, offsetY)
 }
-*/
+
+function eventListeners(){
+    addMouseListeners()
+    // addTouchListeners()
+}
+
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    // gElCanvas.addEventListener('mousemove', onMove)
+    // gElCanvas.addEventListener('mouseup', onUp)
+  }
+
+  function addTouchListeners() {
+    // gElCanvas.addEventListener('touchstart', onDown)
+    // gElCanvas.addEventListener('touchmove', onMove)
+    // gElCanvas.addEventListener('touchend', onUp)
+  }
+
+
+function onDown(ev) {
+    const { offsetX, offsetY } = ev
+    const isClicked = isLineClicked(offsetX, offsetY)
+}
+
+function onRemoveLine() {
+    if (confirm('Are you sure you would like to delete this item?')) {
+        removeLine()
+        renderMeme()  
+    }
+}
+
+
+
+function onAddLine() {
+    addLine()
+}
+
+function onChangeFontFamily(font) {
+    changeFontFamily(font)
+    renderMeme()
+  }

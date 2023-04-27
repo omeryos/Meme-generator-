@@ -23,6 +23,48 @@ function renderGallery() {
   function onImgSelect(id){
     // const img =  getImg(id)
     gMeme.selectedImgId=id
+    const elCanvas = document.querySelector('.canvas-container');
+    const elControls = document.querySelector('.editor-container');
+    const elGallery = document.querySelector('.gallery-container');
+    elCanvas.classList.remove('display-none')
+    elControls.classList.remove('display-none')
+    elGallery.classList.add('display-none')
     renderMeme()
   }
 
+  function onShowGallery(){
+    const elCanvas = document.querySelector('.canvas-container')
+    const elControls = document.querySelector('.editor-container')
+    const elGallery = document.querySelector('.gallery-container')
+    elCanvas.classList.add('display-none')
+    elControls.classList.add('display-none')
+    elGallery.classList.remove('display-none')
+   
+  }
+
+
+
+  /*
+   function onImgSelect(id){
+    // const img =  getImg(id)
+    gMeme.selectedImgId=id
+    const elCanvas = document.querySelector('.canvas-container');
+    const elControls = document.querySelector('.editor-container');
+    const elGallery = document.querySelector('.gallery-container');
+    elCanvas.classList.remove('display-none')
+    elControls.classList.remove('display-none')
+    elGallery.classList.add('display-none')
+    renderMeme()
+  }
+
+  function onShowGallery(){
+    const elCanvas = document.querySelector('.canvas-container')
+    const elControls = document.querySelector('.editor-container')
+    const elGallery = document.querySelector('.gallery-container')
+    elCanvas.classList.add('display-none')
+    elControls.classList.add('display-none')
+    elGallery.classList.remove('display-none')
+   
+  }
+
+  */

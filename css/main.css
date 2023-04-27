@@ -1,12 +1,112 @@
-/* .images-container .img-gallery, img, .meme-container .img-gallery img {
+@import url(css/helpers.css);
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+
+.main-header {
+    height: 60px;
+    background: #333;
+}
+
+.editor-container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 400px;
+}
+
+.controls {
+    
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-editor {
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
     cursor: pointer;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+}
+
+.text-input {
+    padding: 10px;
+    border-radius: 5px;
     border: 2px solid black;
-    border-radius: 12px;
-    opacity: 1;
-    transition: 0.3s ease-in-out, box-shadow 0.3s;
-} */
+    margin-top: 10px;
+}
 
+.canvas-container {
+    display: flex;
+    margin-top: 20px;
+    border: 1px solid #333;
+}
 
+img{
+    width: 30%
+}
+
+.images-container {
+    display: flex;
+    flex-wrap: wrap;
+    
+    gap: 10px;
+}
+
+.gallery-image {
+    flex: 1 0 30%;
+}
+
+.gallery-image img {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+}
+
+/* Media queries for tablets */
+@media only screen and (min-width: 768px) {
+    .editor-container {
+        max-width: 600px;
+    }
+
+    .canvas-container {
+        margin-top: 50px;
+    }
+
+    .images-container {
+        gap: 20px;
+    }
+
+    .gallery-image {
+        flex: 1 0 30%;
+    }
+}
+
+/* Media queries for desktop computers */
+@media only screen and (min-width: 1024px) {
+    .editor-container {
+        max-width: 800px;
+    }
+
+    .canvas-container {
+        margin-top: 80px;
+    }
+
+    .images-container {
+        gap: 30px;
+    }
+
+    .gallery-image {
+        flex: 1 0 20%;
+    }
+}

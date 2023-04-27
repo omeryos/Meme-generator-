@@ -6,41 +6,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>Document</title>
+    <title>Meme Generator</title>
 </head>
 
-<body>
+<body onload="onInit()">
     <div class="main-screen"></div>
-    <header class="main-header">
-        <button onclick="onShowGallery()">Gallery</button>
-        
+    <header class="main-header">MEME generator
+
+
+
     </header>
-    <main class="editor-container display-none"  >
-        <div class="controls ">
+    <div class="main-header-btns">
+        <button class="main-header-btn" onclick="onShowGallery()">Gallery</button>
+        <button class="main-header-btn" onclick="onUploadImgToFb()">Upload to FB</button>
+        <button class="main-header-btn">About</button>
+    </div>
+    <div class="main-editor-container">
+    <main class="editor-container display-none">
+        <div class="controls display-none">
             <button class="btn-editor" onclick="onAddLine()">Add line</button>
             <button class="btn-editor" onclick="onRemoveLine()">Remove line</button>
             <button class="btn-editor" onclick="onDecreaseFont()">font -</button>
             <button class="btn-editor" onclick="onIncreaseFont()">font +</button>
             <button class="btn-editor" onclick="onSwitchLine()">Switch line</button>
-            <select onchange="onChangeFontFamily(this.value)" name="font-value" id="fontChange">
+            <select class="btn-editor" onchange="onChangeTextAlign(this.value)">Text align
+                <option value="left">Left</option>
+                <option value="center">Center</option>
+                <option value="right">Right</option>
+            </select>
+            <select class="btn-editor" oninput="onChangeFontFamily(this.value)" name="font-value" id="fontChange">
                 <option value="impact">Impact</option>
                 <option value="comic">Comic</option>
                 <option value="vardana">vardana</option>
             </select>
-            <label for="textColor">text-Color</label>
-            <input type="color" oninput="onSetColor(this.value)">
+            <label for="textColor"></label>
+           <input class="textColor" type="color" oninput="onSetColor(this.value)"> 
             <label for="text-input">
-                <h3>text-input</h3>
-            </label>
+                <br>    
+            </label>Enter text Here
             <input type="text" name="text" class="text-input" oninput="onSetText(this.value)">
-
-            <!-- <input type="file" class="file-input btn" name="image" onchange="onRenderMeme(event)" /> -->
-            
-    </main>
-    <div class="canvas-container display-none">
-        <canvas id="canvas" height="500px" width="500px" style="outline: 1px solid black"></canvas>
+        </div>
+        <div class="canvas-container display-none">
+            <canvas id="canvas" class="display-none" height="400px" width="400px"
+                style="outline: 1px solid black"></canvas>
+        </div>
     </div>
-    <main class="gallery-container" >
+    </main>
+    
+        
+    
+    <main class="gallery-container">
         <section class="images-container">
 
         </section>

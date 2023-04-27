@@ -43,12 +43,9 @@ var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        // { txt: 'I sometimes eat Falafel', size: 22, align: 'right', color: 'white',stroke: 'black', font : 'arial', pos: { x: gElCanvas.width/2, y: 150 },
-        // isDrag: false, },
-        // { txt: 'I HELLO WORLD', size: 22, align: 'right', color: 'red',stroke: 'black', font : 'arial', pos: { x: gElCanvas.width/2, y: 300 },
-        // isDrag: false, },
-        // { txt: 'I PROGRAM CODE', size: 22, align: 'right', color: 'black',stroke: 'black', font : 'arial', pos: { x: gElCanvas.width/2, y: 450 },
-        // isDrag: false, }
+        {
+            txt: 'First line goes here!', size: 30, color: 'white', stroke: 'black', font: 'impact', pos: { x: 0, y: 90 }
+        }
     ]
 }
 function getMeme() {
@@ -79,23 +76,144 @@ function decreaseFont() {
 function setLineText(value) {
     const line = getLine()
     line.txt = [value]
-    console.log('line:',line.txt )
+    console.log('line:', line.txt)
 }
-function switchLine(){
-    if(gCurrLineIdx<gMeme.lines.length) gCurrLineIdx++
-     if(gCurrLineIdx===gMeme.lines.length)gCurrLineIdx=0
+function switchLine() {
+    if (gCurrLineIdx < gMeme.lines.length) gCurrLineIdx++
+    if (gCurrLineIdx === gMeme.lines.length) gCurrLineIdx = 0
 }
 function updateLineIdx(lineIdx) {
     gCurrLineIdx = lineIdx
 }
 
+
+
+function changeFontFamily(font) {
+    const line = getLine()
+    if (!line) return
+    line.font = font
+    console.log(line.font)
+}
+
+
+function isLineClicked(offsetX, offsetY) {
+    const lines = getLines()
+    const clickedLineIdx = lines.findIndex((line) => {
+        const lineWidth = gCtx.measureText(line.txt).width
+        const lineHeight = line.size
+        return (
+            offsetX >= line.pos.x - lineWidth / 2 - 10 &&
+            offsetX <= line.pos.x + lineWidth + 20 &&
+            offsetY >= line.pos.y - 10 &&
+            offsetY <= line.pos.y + lineHeight + 20
+        )
+    })
+    if (clickedLineIdx !== -1) {
+        updateLineIdx(clickedLineIdx)
+
+        console.log('clickedLineIdx', clickedLineIdx)
+        return true
+    }
+    return false
+}
+
+function drawBorder() {
+    const line = getLine()
+    if (!line) return
+    gCtx.beginPath()
+    gCtx.rect(
+        line.pos.x - gCtx.measureText(line.txt).width - 15,
+        line.pos.y - 20,
+        gCtx.measureText(line.txt).width + 20,
+        line.size + 20
+    )
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = 'black'
+    gCtx.stroke()
+    gCtx.closePath()
+}
+
+
+function removeLine() {
+    if (gMeme.lines.length === 0) return
+    gMeme.lines.splice(gCurrLineIdx, 1)
+    gCurrLineIdx--
+    console.log('gCurrLineIdx on the remove function', gCurrLineIdx)
+    if (gMeme.lines.length === 0) gCurrLineIdx = 0
+}
+
+
+function changeAlign(alignDir) {
+    const line = getLine();
+    line.align=alignDir
+    console.log('start the switch',alignDir)
+    switch (alignDir) {
+        case 'left':
+            console.log('in left')
+            line.pos.x = 0;
+            renderMeme()
+            break;
+        case 'center':
+            line.pos.x = gElCanvas.width / 2.9;
+            renderMeme()
+            break;
+        case 'right':
+            line.pos.x = gElCanvas.width-gCtx.measureText(line.txt).width;
+            renderMeme()
+            break;
+    } 
+    
+}
+
+
+
+function addLine(font) {
+    if (gMeme.lines.length === 3) return
+    const lines = getLines();
+    const numNewLine = lines.length + 1;
+    const newLine = _createLine(font, numNewLine);
+    gMeme.lines.push(newLine);
+    gCurrLineIdx = (gMeme.lines.length - 1);
+}
+
+function _createLine(font, numNewLine) {
+    const newPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 };
+    // check if the line is first or second
+    if (numNewLine === 1) newPos.y = 30;
+    if (numNewLine === 2) newPos.y = gElCanvas.height - 80;
+    if (numNewLine === 3) newPos.y = 210
+    if (numNewLine > 3) return
+
+
+    return {
+        txt: '',
+        size: 30,
+        align: 'center',
+        color: 'white',
+        stroke: 'black',
+        font: 'impact',
+        pos: { x: newPos.x, y: newPos.y },
+        isDrag: false,
+    };
+}
+
+
+
+
+
+
+
+
+
+
 function getEvPos(ev) {
+    console.log('position get')
     // Gets the offset pos , the default pos
     let pos = {
-      x: ev.offsetX,
-      y: ev.offsetY,
+        x: ev.offsetX,
+        y: ev.offsetY,
     }
-     console.log('pos:', pos)
+    console.log('pos:', pos)
     // Check if its a touch ev
     // if (TOUCH_EVS.includes(ev.type)) {
     //   //soo we will not trigger the mouse ev
@@ -112,47 +230,4 @@ function getEvPos(ev) {
     //   // console.log('pos:', pos)
     // }
     return pos
-  }
-  
-  function changeFontFamily(font) {
-    const line = getLine()
-    if (!line) return
-    line.font = font
-  }
-
-  function isLineClicked(offsetX, offsetY) {
-    const lines = getLines()
-    const clickedLineIdx = lines.findIndex((line) => {
-        const lineWidth = gCtx.measureText(line.txt).width
-        const lineHeight = line.size
-        return (
-            offsetX >= line.pos.x - lineWidth / 2 - 10 &&
-            offsetX <= line.pos.x + lineWidth + 20 &&
-            offsetY >= line.pos.y - 10 &&
-            offsetY <= line.pos.y + lineHeight + 20
-        )
-    })
-    if (clickedLineIdx !== -1) {
-        updateLineIdx(clickedLineIdx)
-        
-        console.log('clickedLineIdx', clickedLineIdx)
-        return true
-    }
-    return false
-}
-
-function drawBorder() {
-  const line = getLine()
-  if (!line) return
-  gCtx.beginPath()
-  gCtx.rect(
-    line.pos.x - gCtx.measureText(line.txt).width  - 15,
-    line.pos.y - 20,
-    gCtx.measureText(line.txt).width + 20,
-    line.size + 20
-  )
-  gCtx.lineWidth = 2
-  gCtx.strokeStyle = 'orange'
-  gCtx.stroke()
-  gCtx.closePath()
 }

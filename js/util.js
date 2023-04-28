@@ -1,15 +1,24 @@
 'use strict'
+const KEY = 'memeDB'
 
-// var gElCanvas;
-// var gCtx;
+function saveToStorage(key, val) {
+    localStorage.setItem(key, JSON.stringify(val))
+}
 
-// gElCanvas = document.getElementById('canvas');
-// gCtx = gElCanvas.getContext('2d');
+function loadFromStorage(key) {
+    var val = localStorage.getItem(key)
+    return JSON.parse(val)
+}
 
-// function getImg(id) {
-//     const img = gImgs.find((gImg) => gImg.id === id)
-//     return img
-// }
+function _saveMemesToStorage() {
+    saveToStorage(STORAGE_KEY, gSavedMeme)
+  }
+
+function _loadFromStorage(key){
+    loadFromStorage(key)
+}
+
+
 
 function onUploadImgToFb() {
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format
@@ -23,6 +32,7 @@ function onUploadImgToFb() {
     }
     // Send the image to the server
     doUploadImg(imgDataUrl, onSuccess)
+    
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
@@ -52,3 +62,16 @@ function doUploadImg(imgDataUrl, onSuccess) {
     XHR.open('POST', '//ca-upload.com/here/upload.php')
     XHR.send(formData)
 }
+
+
+function makeId(length = 6) {
+    var txt = '';
+    var possible =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  
+    for (var i = 0; i < length; i++) {
+      txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+  
+    return txt;
+  }

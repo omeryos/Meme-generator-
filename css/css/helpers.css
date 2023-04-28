@@ -46,3 +46,24 @@
     src: url(/font/montserrat/Montserrat-Regular.ttf);
   }
   
+/* HOVER EFFECT */
+.btn-editor:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.btn-menu:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.main-header-btn:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.modal-btn:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}

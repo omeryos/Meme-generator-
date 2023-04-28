@@ -1,5 +1,9 @@
 'use strict'
 
+
+
+
+
 var gCurrLineIdx = 0
 
 var gKeywordSearchCountMap = {
@@ -37,6 +41,66 @@ var gImgs = [
         id: 6,
         url: 'img/6.jpg',
         keywords: ['funny', 'cat']
+    },
+    {
+        id: 7,
+        url: 'img/7.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 8,
+        url: 'img/8.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 9,
+        url: 'img/9.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 10,
+        url: 'img/10.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 11,
+        url: 'img/11.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 12,
+        url: 'img/12.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 13,
+        url: 'img/13.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 14,
+        url: 'img/14.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 15,
+        url: 'img/15.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 16,
+        url: 'img/16.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 17,
+        url: 'img/17.jpg',
+        keywords: ['funny', 'cat']
+    },
+    {
+        id: 18,
+        url: 'img/18.jpg',
+        keywords: ['funny', 'cat']
     }
 ];
 var gMeme = {
@@ -44,7 +108,7 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'First line goes here!', size: 30, color: 'white', stroke: 'black', font: 'impact', pos: { x: 0, y: 90 }
+            txt: 'First line goes here!', size: 30, color: 'white', stroke: 'black', font: 'impact', pos: { x: 50 , y: 90 }
         }
     ]
 }
@@ -76,11 +140,12 @@ function decreaseFont() {
 function setLineText(value) {
     const line = getLine()
     line.txt = [value]
-    console.log('line:', line.txt)
+    
 }
 function switchLine() {
     if (gCurrLineIdx < gMeme.lines.length) gCurrLineIdx++
     if (gCurrLineIdx === gMeme.lines.length) gCurrLineIdx = 0
+    
 }
 function updateLineIdx(lineIdx) {
     gCurrLineIdx = lineIdx
@@ -121,17 +186,18 @@ function drawBorder() {
     const line = getLine()
     if (!line) return
     gCtx.beginPath()
+    const textWidth = gCtx.measureText(line.txt).width
     gCtx.rect(
-        line.pos.x - gCtx.measureText(line.txt).width - 15,
-        line.pos.y - 20,
-        gCtx.measureText(line.txt).width + 20,
-        line.size + 20
+      line.pos.x - textWidth *0.01 - 10, // left edge of text
+      line.pos.y - 25, // top of text
+      textWidth + 20, // add border width
+      line.size + 20 // add border width
     )
     gCtx.lineWidth = 2
     gCtx.strokeStyle = 'black'
     gCtx.stroke()
     gCtx.closePath()
-}
+  }
 
 
 function removeLine() {
@@ -151,21 +217,19 @@ function changeAlign(alignDir) {
         case 'left':
             console.log('in left')
             line.pos.x = 0;
-            renderMeme()
+            
             break;
         case 'center':
             line.pos.x = gElCanvas.width / 2.9;
-            renderMeme()
+            
             break;
         case 'right':
             line.pos.x = gElCanvas.width-gCtx.measureText(line.txt).width;
-            renderMeme()
+            
             break;
     } 
     
 }
-
-
 
 function addLine(font) {
     if (gMeme.lines.length === 3) return
@@ -193,7 +257,7 @@ function _createLine(font, numNewLine) {
         stroke: 'black',
         font: 'impact',
         pos: { x: newPos.x, y: newPos.y },
-        isDrag: false,
+       
     };
 }
 

@@ -10,16 +10,15 @@
 </head>
 
 <body onload="onInit()">
+    <div class="menu-open"></div>
     <div class="main-screen"></div>
     <header class="main-header">MEME generator
-
-
-
     </header>
     <div class="main-header-btns">
         <button class="main-header-btn" onclick="onShowGallery()">Gallery</button>
         <button class="main-header-btn" onclick="onUploadImgToFb()">Upload to FB</button>
         <button class="main-header-btn">About</button>
+        <button class="btn-menu" onclick="onToggleMenu()">☰</button>
     </div>
     <div class="main-editor-container">
     <main class="editor-container display-none">
@@ -34,6 +33,7 @@
                 <option value="center">Center</option>
                 <option value="right">Right</option>
             </select>
+            
             <select class="btn-editor" oninput="onChangeFontFamily(this.value)" name="font-value" id="fontChange">
                 <option value="impact">Impact</option>
                 <option value="comic">Comic</option>
@@ -62,11 +62,20 @@
     </main>
     <main class="my-memes=container"></main>
     <main class="about-container"></main>
-    <footer class="main-footer"></footer>
-    <div class="modal"></div>
+    <footer class="main-footer"><h4 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; stroke: antiquewhite;">Meme generator created by Omer yossef 2023</h4></footer>
+    <div class="modal" style="display: none;">
+        <div class="modal-btns">
+            <button class="modal-btn modal-btn-menu" onclick="onToggleMenu()">☰</button>
+            <button class="modal-btn" onclick="onShowGallery()">Gallery</button>
+            <button class="modal-btn" onclick="onUploadImgToFb()">Upload to FB</button>
+            <button class="modal-btn">About</button>
+
+        </div>
+       
+    </div>
 
 
-    <script src="js\main.js"></script>
+    <script src="js\util.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js\meme-controller.js"></script>

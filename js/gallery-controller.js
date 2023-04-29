@@ -1,28 +1,31 @@
 'use strict'
 
-renderGallery()
+
 let gIsModelOpen = false
 
 function renderGallery() {
-  const imgs = getImgs();
+  const imgs = getImgs()
   var strHtmls = `<div class="img-gallery-upload">
                       
                       <img src="img/plus.jpg" onclick="onUploadImage()">
-                    </div>`;
+                    </div>`
   strHtmls += imgs
     .map((img) => {
       return `<div class="img-gallery">
                   <img src="${img.url}" onclick="onImgSelect(${img.id})">
-                </div>`;
+                </div>`
     })
-    .join('');
+    .join('')
 
-  const elGallery = document.querySelector('.images-container');
-  elGallery.innerHTML = strHtmls;
+  const elGallery = document.querySelector('.images-container')
+  elGallery.innerHTML = strHtmls
 }
 
 
-
+function onAbout() {
+  const elAboutModal = document.querySelector('.about')
+  elAboutModal.style.display = elAboutModal.style.display === "none" ? "" : "none"
+}
 
 function onToggleMenu() {
   const elModal = document.querySelector('.modal')
@@ -50,15 +53,15 @@ function onToggleMenu() {
 
 
 function onImgSelect(id) {
-  // const img =  getImg(id)
   gMeme.selectedImgId = id
-  const elCanvasCont = document.querySelector('.canvas-container');
-  const elControlsCont = document.querySelector('.editor-container');
-  const elGallery = document.querySelector('.gallery-container');
+  const elCanvasCont = document.querySelector('.canvas-container')
+  const elControlsCont = document.querySelector('.editor-container')
+  const elGallery = document.querySelector('.gallery-container')
   const elCanvas = document.getElementById('canvas')
-  const elControls = document.querySelector('.controls');
+  const elControls = document.querySelector('.controls')
+  const elGalleryBtn = document.querySelector('.gallery-btn')
 
-
+  elGalleryBtn.classList.remove('display-none')
   elCanvasCont.classList.remove('display-none')
   elCanvas.classList.remove('display-none')
   elControlsCont.classList.remove('display-none')
@@ -72,9 +75,10 @@ function onShowGallery() {
   const elControlsCont = document.querySelector('.editor-container')
   const elGallery = document.querySelector('.gallery-container')
   const elCanvas = document.getElementById('canvas')
-  const elControls = document.querySelector('.controls');
+  const elControls = document.querySelector('.controls')
   const elModal = document.querySelector('.modal')
   const elBtnMenu = document.querySelector('.btn-menu')
+  const elGalleryBtn = document.querySelector('.gallery-btn')
   if (gIsModelOpen) gIsModelOpen = false
 
   elBtnMenu.innerText = '☰'
@@ -84,6 +88,7 @@ function onShowGallery() {
   elControlsCont.classList.add('display-none')
   elGallery.classList.remove('display-none')
   elCanvas.classList.add('display-none')
+  elGalleryBtn.classList.add('display-none')
 }
 
 

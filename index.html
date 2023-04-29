@@ -13,48 +13,59 @@
     <div class="menu-open"></div>
     <div class="main-screen"></div>
     <header class="main-header">MEME generator
+
+        <div class="main-header-btns">
+            <button class="gallery-btn display-none" onclick="onShowGallery()">Gallery</button>
+            <button class="main-header-btn" onclick="onAbout()">About</button>
+            <button class="btn-menu" onclick="onToggleMenu()">☰</button>
+        </div>
     </header>
-    <div class="main-header-btns">
-        <button class="main-header-btn" onclick="onShowGallery()">Gallery</button>
-        <button class="main-header-btn" onclick="onUploadImgToFb()">Upload to FB</button>
-        <button class="main-header-btn">About</button>
-        <button class="btn-menu" onclick="onToggleMenu()">☰</button>
-    </div>
     <div class="main-editor-container">
-    <main class="editor-container display-none">
-        <div class="controls display-none">
-            <button class="btn-editor" onclick="onAddLine()">Add line</button>
-            <button class="btn-editor" onclick="onRemoveLine()">Remove line</button>
-            <button class="btn-editor" onclick="onDecreaseFont()">font -</button>
-            <button class="btn-editor" onclick="onIncreaseFont()">font +</button>
-            <button class="btn-editor" onclick="onSwitchLine()">Switch line</button>
-            <select class="btn-editor" onchange="onChangeTextAlign(this.value)">Text align
-                <option value="left">Left</option>
-                <option value="center">Center</option>
-                <option value="right">Right</option>
-            </select>
-            
-            <select class="btn-editor" oninput="onChangeFontFamily(this.value)" name="font-value" id="fontChange">
-                <option value="impact">Impact</option>
-                <option value="comic">Comic</option>
-                <option value="vardana">vardana</option>
-            </select>
-            <label for="textColor"></label>
-           <input class="textColor" type="color" oninput="onSetColor(this.value)"> 
-            <label for="text-input">
-                <br>    
-            </label>Enter text Here
-            <input type="text" name="text" class="text-input" oninput="onSetText(this.value)">
-        </div>
-        <div class="canvas-container display-none">
-            <canvas id="canvas" class="display-none" height="400px" width="400px"
-                style="outline: 1px solid black"></canvas>
-        </div>
+        <main class="editor-container display-none">
+            <div class="controls display-none">
+                <div class="buttons-container">
+
+                    <a href="#" download="file-name"><button class="btn-editor"
+                            onclick="downloadCanvas(document.querySelector('a'))">
+                            Download </button></a>
+
+                    <button class="btn-editor" onclick="OnMoveTextLeft()">Move left</button>
+                    <button class="btn-editor" onclick="OnMoveTextRight()">Move right</button>
+                    <button class="btn-editor" onclick="OnMoveTextUp()">Move up</button>
+                    <button class="btn-editor" onclick="OnMoveTextDown()">Move down</button>
+                    <button class="btn-editor" onclick="onUploadImgToFb()">Share on FB</button>
+                    <button class="btn-editor" onclick="onAddLine()">Add line</button>
+                    <button class="btn-editor" onclick="onRemoveLine()">Remove line</button>
+                    <button class="btn-editor" onclick="onDecreaseFont()">font -</button>
+                    <button class="btn-editor" onclick="onIncreaseFont()">font +</button>
+                    <button class="btn-editor" onclick="onSwitchLine()">Switch line</button>
+                    <select class="btn-editor" onchange="onChangeTextAlign(this.value)">Text align
+                        <option value="left">Left</option>
+                        <option value="center">Center</option>
+                        <option value="right">Right</option>
+                    </select>
+
+                    <select class="btn-editor" oninput="onChangeFontFamily(this.value)" name="font-value"
+                        id="fontChange">
+                        <option value="impact">Impact</option>
+                        <option value="comic">Comic</option>
+                        <option value="vardana">vardana</option>
+                    </select>
+                    <label for="textColor"></label>
+                    <input class="textColor" type="color" oninput="onSetColor(this.value)">
+                    <input type="text" placeholder="Text" name="text" class="text-input"
+                        oninput="onSetText(this.value)">
+                </div>
+            </div>
+            <div class="canvas-container display-none">
+                <canvas id="canvas" class="display-none" height="400px" width="400px"
+                    style="outline: 1px solid black"></canvas>
+            </div>
     </div>
     </main>
-    
-        
-    
+
+    <main class="meme-container"></main>
+
     <main class="gallery-container">
         <section class="images-container">
 
@@ -62,18 +73,28 @@
     </main>
     <main class="my-memes=container"></main>
     <main class="about-container"></main>
-    <footer class="main-footer"><h4 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; stroke: antiquewhite;">Meme generator created by Omer yossef 2023</h4></footer>
+    <footer class="main-footer">
+        <h4 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; stroke: antiquewhite;">Meme
+            generator created by Omer yossef 2023</h4>
+    </footer>
     <div class="modal" style="display: none;">
         <div class="modal-btns">
             <button class="modal-btn modal-btn-menu" onclick="onToggleMenu()">☰</button>
             <button class="modal-btn" onclick="onShowGallery()">Gallery</button>
-            <button class="modal-btn" onclick="onUploadImgToFb()">Upload to FB</button>
-            <button class="modal-btn">About</button>
 
+            <button class="modal-btn" onclick="onAbout()">About</button>
         </div>
-       
-    </div>
 
+
+    </div>
+    <div class="about" style="display: none;">
+        <h4>
+            Created by Omer Yossef, as part of sprint 2 during the coding abademy web development course. I hope you'll
+            find this amuzing,
+            if you have any suggestions, contact me at <a href="mailto:omeryosef@gmail.com">omeryosef@gmail.com.</a>
+        </h4>
+        <button class="modal-btn" onclick="onAbout()">Close</button>
+    </div>
 
     <script src="js\util.js"></script>
     <script src="js/meme-service.js"></script>

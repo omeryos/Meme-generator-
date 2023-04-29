@@ -1,38 +1,26 @@
 'use strict'
-const KEY = 'memeDB'
 
-function saveToStorage(key, val) {
-    localStorage.setItem(key, JSON.stringify(val))
+
+function downloadCanvas(elLink) {
+    console.log('in dwnld')
+    console.log(elLink, 'elLink')
+    // Gets the canvas content and convert it to base64 data URL that can be save as an image
+    const data = gElCanvas.toDataURL() // Method returns a data URL containing a representation of the image in the format specified by the type parameter.
+    elLink.href = data // Put it on the link
+    elLink.download = 'my-img' // Can change the name of the file
 }
-
-function loadFromStorage(key) {
-    var val = localStorage.getItem(key)
-    return JSON.parse(val)
-}
-
-function _saveMemesToStorage() {
-    saveToStorage(STORAGE_KEY, gSavedMeme)
-  }
-
-function _loadFromStorage(key){
-    loadFromStorage(key)
-}
-
 
 
 function onUploadImgToFb() {
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format
-
     // A function to be called if request succeeds
     function onSuccess(uploadedImgUrl) {
         // Encode the instance of certain characters in the url
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        console.log(encodedUploadedImgUrl)
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
     }
     // Send the image to the server
     doUploadImg(imgDataUrl, onSuccess)
-    
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
@@ -62,16 +50,3 @@ function doUploadImg(imgDataUrl, onSuccess) {
     XHR.open('POST', '//ca-upload.com/here/upload.php')
     XHR.send(formData)
 }
-
-
-function makeId(length = 6) {
-    var txt = '';
-    var possible =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  
-    for (var i = 0; i < length; i++) {
-      txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-  
-    return txt;
-  }

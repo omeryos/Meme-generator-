@@ -5,10 +5,7 @@ let gIsModelOpen = false
 
 function renderGallery() {
   const imgs = getImgs()
-  var strHtmls = `<div class="img-gallery-upload">
-                      
-                      <img src="img/plus.jpg" onclick="onUploadImage()">
-                    </div>`
+  var strHtmls = ``
   strHtmls += imgs
     .map((img) => {
       return `<div class="img-gallery">

@@ -22,24 +22,39 @@
     </header>
     <div class="main-editor-container">
         <main class="editor-container display-none">
+            
             <div class="controls display-none">
+                <input type="text" placeholder="Text" name="text" class="text-input"
+                oninput="onSetText(this.value)">
+                
                 <div class="buttons-container">
 
                     <a href="#" download="file-name"><button class="btn-editor"
                             onclick="downloadCanvas(document.querySelector('a'))">
-                            Download </button></a>
+                            <img src="img\icons\icons8-download-32.png" alt="Download"></button></a>
 
-                    <button class="btn-editor" onclick="OnMoveTextLeft()">Move left</button>
-                    <button class="btn-editor" onclick="OnMoveTextRight()">Move right</button>
-                    <button class="btn-editor" onclick="OnMoveTextUp()">Move up</button>
-                    <button class="btn-editor" onclick="OnMoveTextDown()">Move down</button>
-                    <button class="btn-editor" onclick="onUploadImgToFb()">Share on FB</button>
-                    <button class="btn-editor" onclick="onAddLine()">Add line</button>
-                    <button class="btn-editor" onclick="onRemoveLine()">Remove line</button>
-                    <button class="btn-editor" onclick="onDecreaseFont()">font -</button>
-                    <button class="btn-editor" onclick="onIncreaseFont()">font +</button>
-                    <button class="btn-editor" onclick="onSwitchLine()">Switch line</button>
-                    <select class="btn-editor" onchange="onChangeTextAlign(this.value)">Text align
+                    <button class="btn-editor" onclick="OnMoveTextLeft()"><img src="img\icons\icons8-left-32.png"
+                            alt="Left"></button>
+                    <button class="btn-editor" onclick="OnMoveTextRight()"><img src="img\icons\icons8-right-32.png"
+                            alt="Right"></button>
+                    <button class="btn-editor" onclick="OnMoveTextUp()"><img src="img\icons\icons8-up-32.png"
+                            alt="Up"></button>
+                    <button class="btn-editor" onclick="OnMoveTextDown()"><img src="img\icons\downArrw.png"
+                            alt="Down"></button>
+                    <button class="btn-editor" onclick="onUploadImgToFb()"><img src="img\icons\icons8-facebook-32.png"
+                            alt="FB share"></button>
+                    <button class="btn-editor" onclick="onAddLine()"><img src="img\icons\icons8-add-row-32.png"
+                            alt="FB share"></button>
+                    <button class="btn-editor" onclick="onRemoveLine()"><img
+                            src="img\icons\icons8-delete-row-32 (1).png" alt="Delete"></button>
+                    <button class="btn-editor" onclick="onDecreaseFont()"><img
+                            src="img\icons\icons8-decrease-font-32.png" alt="Font -"></button>
+                    <button class="btn-editor" onclick="onIncreaseFont()"><img
+                            src="img\icons\icons8-increase-font-32.png" alt="Font +"></button>
+                    <button class="btn-editor" onclick="onSwitchLine()"><img
+                            src="img\icons\icons8-sorting-arrows-32.png" alt="Switch row"></button>
+                    <select class="btn-editor" onchange="onChangeTextAlign(this.value)"><img
+                            src="img\icons\icons8-align-text-bottom-32.png" alt="Align">
                         <option value="left">Left</option>
                         <option value="center">Center</option>
                         <option value="right">Right</option>
@@ -51,10 +66,23 @@
                         <option value="comic">Comic</option>
                         <option value="vardana">vardana</option>
                     </select>
-                    <label for="textColor"></label>
-                    <input class="textColor" type="color" oninput="onSetColor(this.value)">
-                    <input type="text" placeholder="Text" name="text" class="text-input"
-                        oninput="onSetText(this.value)">
+                    <!-- <div class="color-picker">
+                        <input class="text-color" type="color" oninput="onSetColor(this.value)" style="opacity: 0;"> 
+                        <img class="color-picker-img" src="img\icons\icons8-paint-palette-96.png" alt="Color Picker">
+                      </div> -->
+                      <div>
+                        <button class="btn-editor btn-font-placeholder">
+                            <img src="img\icons\icons8-paint-palette-32.png" alt="" />
+                            <input
+                              type="color"
+                              class="btn-fontColor"
+                              id="fontColor"
+                              name="fontColor"
+                              oninput="setFontColor(event)"
+                            />
+                          </button>
+                      </div>
+                      
                 </div>
             </div>
             <div class="canvas-container display-none">

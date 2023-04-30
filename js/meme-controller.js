@@ -95,10 +95,8 @@ function onDown(ev) {
     renderMeme()
 }
 function onRemoveLine() {
-    if (confirm('Are you sure you would like to delete this item?')) {
         removeLine()
         renderMeme()
-    }
 }
 function onAddLine() {
     addLine()

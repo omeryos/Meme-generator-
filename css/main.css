@@ -34,7 +34,8 @@ body {
     width: 100%;
     font-family: vardana;
     font-size: 16px;
-    background-color: wheat;
+    /* background-color: wheat; */
+    background: linear-gradient(to bottom, wheat, rgba(14, 14, 14, 0));;
 }
 
 
@@ -48,7 +49,12 @@ body {
     height: 45px;
     width: 100px;
 }
+.btn-editor img{
+width: 20px;
+height: 20px;
 
+
+}
 
 .btn-menu {
     font-family: vardana;
@@ -65,7 +71,9 @@ body {
 }
 
 canvas {
+    width: 250px;
     border: 5px solid red;
+    border-radius: 15%;
 }
 
 .canvas-container {
@@ -74,16 +82,51 @@ canvas {
     align-items: center;
     justify-items: center;
     margin: auto;
-    border: 1px solid #333;
+   
 }
 
 .controls {
     max-height: 400px;
-    border: 2px solid black;
+    border: 5px solid black;
     margin: auto;
-
+    border-radius: 10%;
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
 
 }
+.color-picker{
+    display: flex;
+}
+
+.color-picker-img {
+position: relative;
+  
+  cursor: pointer;
+  background: #333;
+  border-radius: 5px;
+    padding: 10px 15px;
+   
+    height: 45px;
+    width: 100%;
+}
+
+.btn-fontColor {
+    position: relative;
+    opacity: 0;
+    bottom: 30px;
+    width: 70px;
+    
+     }
+
+
+
+
+.text-color{
+    position: relative;
+    top: 0;
+    right:-40px;
+    opacity: 0;
+}
+
 
 .gallery-btn {
 
@@ -102,7 +145,8 @@ canvas {
 
 .buttons-container {
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .main-footer {
@@ -111,11 +155,12 @@ canvas {
     justify-content: center;
     width: 100vw;
     height: 10vh;
-    margin: 0px;
+    margin-top: 45px;
     background-color: #333;
 }
 
 .main-header {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     height: 100px;
     width: 100%;
     background: #333;
@@ -129,7 +174,10 @@ canvas {
 .main-header-btns {
     margin-bottom: 5px;
     margin-top: 5px;
+    height: 70px;
+    
     font-family: vardana;
+    align-content: stretch;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -151,21 +199,20 @@ canvas {
     padding: 13px 25px;
 }
 
-.img-gallery-upload {
-    box-sizing: content-box;
-}
+
 
 img {
     border: 2px solid #333;
     border-radius: 10%;
-    height: 50px
+    height: 50px;
+    
 }
 
 .images-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 
-    grid-gap: 20px;
+    gap: 15px;
     justify-items: center;
 }
 
@@ -224,7 +271,7 @@ img {
 
     border-radius: 5px;
     border: 2px solid black;
-
+    height: 45px;
     margin: 15px;
 
 }
@@ -236,11 +283,16 @@ img {
     .btn-menu {
         display: none;
     }
-
+    canvas {
+        width: 400px;
+        
+    }
     .modal {
         display: none;
     }
-
+    .main-header{
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    }
     .main-header-btn {
         display: block;
 
@@ -257,14 +309,18 @@ img {
     }
 
     .images-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap:  15px;
     }
 
     img {
         height: 200px;
+       
     }
 
+    .text-input{
+        width:275px;
+    }
 }
 
 /* Media queries for desktop computers */
@@ -272,13 +328,15 @@ img {
     .btn-menu {
         display: none;
     }
-
+    canvas {
+        width: 500px;  
+    }
     .main-header-btn {
         display: block;
     }
 
     .editor-container {
-        max-width: 800px;
+        
         display: grid;
         width: fit-content;
         grid-template-columns: 50vh 50vh;
@@ -290,7 +348,7 @@ img {
     }
 
     .images-container {
-        gap: 30px;
+        gap:  15px;
     }
 
     .main-editor-container {
@@ -309,5 +367,6 @@ img {
 
     img {
         height: 200px;
+        
     }
 }
